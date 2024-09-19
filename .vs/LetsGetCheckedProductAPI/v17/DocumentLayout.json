@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4EE606EF-F9BC-49E4-9879-D03FEC8D3D3E}|ProductAPI\\ProductAPI.csproj|c:\\users\\alex\\documents\\universidade\\codechallenges\\letsgetcheckedproductapi\\productapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4EE606EF-F9BC-49E4-9879-D03FEC8D3D3E}|ProductAPI\\ProductAPI.csproj|solutionrelative:productapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EE606EF-F9BC-49E4-9879-D03FEC8D3D3E}|ProductAPI\\ProductAPI.csproj|c:\\users\\alex\\documents\\universidade\\codechallenges\\letsgetcheckedproductapi\\productapi\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{4EE606EF-F9BC-49E4-9879-D03FEC8D3D3E}|ProductAPI\\ProductAPI.csproj|solutionrelative:productapi\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EE606EF-F9BC-49E4-9879-D03FEC8D3D3E}|ProductAPI\\ProductAPI.csproj|c:\\users\\alex\\documents\\universidade\\codechallenges\\letsgetcheckedproductapi\\productapi\\productapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{4EE606EF-F9BC-49E4-9879-D03FEC8D3D3E}|ProductAPI\\ProductAPI.csproj|solutionrelative:productapi\\productapi.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 451,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProductAPI",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\ProductAPI\\ProductAPI.csproj",
+              "RelativeDocumentMoniker": "ProductAPI\\ProductAPI.csproj",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\ProductAPI\\ProductAPI.csproj",
+              "RelativeToolTip": "ProductAPI\\ProductAPI.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-19T18:46:29.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\ProductAPI\\.env",
+              "RelativeDocumentMoniker": "ProductAPI\\.env",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\ProductAPI\\.env",
+              "RelativeToolTip": "ProductAPI\\.env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-19T18:20:22.859Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\ProductAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "ProductAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\Alex\\Documents\\Universidade\\CodeChallenges\\LetsGetCheckedProductAPI\\ProductAPI\\appsettings.json",
+              "RelativeToolTip": "ProductAPI\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-19T18:01:29.56Z",
+              "EditorCaption": ""
             }
           ]
         }
