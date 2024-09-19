@@ -1,0 +1,6 @@
+.vs
+ProductAPI/bin
+ProductAPI/obj
+ProductAPI/volume
+ProductAPI.csproj.user
+ProductAPI.csproj
