@@ -1,4 +1,4 @@
-using ProductAPI.Repositories;
+using ProductAPI.Data.Repositories;
 using ProductAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);

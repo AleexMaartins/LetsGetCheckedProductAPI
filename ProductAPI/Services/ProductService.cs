@@ -1,5 +1,5 @@
+using ProductAPI.Data.Repositories;
 using ProductAPI.Models.Entities;
-using ProductAPI.Repositories;
 using System.Collections.Generic;
 
 namespace ProductAPI.Services

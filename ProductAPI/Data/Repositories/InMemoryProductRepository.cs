@@ -2,7 +2,7 @@ using ProductAPI.Models.Entities;
 using System;
 using System.Collections.Generic;
 
-namespace ProductAPI.Repositories
+namespace ProductAPI.Data.Repositories
 {
     public class InMemoryProductRepository : IProductRepository
     {
