@@ -38,9 +38,9 @@ namespace ProductAPI.Repositories
         {
             return Products;
         }
-        public Product GetProductById(string id)
+        public Product GetProductById(Guid id)
         {
-            return Products.Find(p => p.Id.ToString() == id);
+            return Products.Find(p => p.Id == id);
         }
     }
 }

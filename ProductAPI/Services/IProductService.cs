@@ -6,6 +6,6 @@ namespace ProductAPI.Services
     public interface IProductService
     {
         IEnumerable<Product> GetAllProducts();
-        Product GetProductById(string id);
+        Product GetProductById(Guid id);
     }
 }

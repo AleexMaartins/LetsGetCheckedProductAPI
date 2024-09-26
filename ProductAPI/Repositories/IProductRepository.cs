@@ -6,6 +6,6 @@ namespace ProductAPI.Repositories
     public interface IProductRepository
     {
         IEnumerable<Product> GetAllProducts();
-        Product GetProductById(string id);
+        Product GetProductById(Guid id);
     }
 }

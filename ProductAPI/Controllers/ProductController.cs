@@ -25,8 +25,8 @@ namespace ProductAPI.Controllers
             return _productService.GetAllProducts();
         }
 
-        [HttpGet("{id}", Name = "GetProduct")]
-        public Product Get(string id)
+        [HttpGet("{id:guid}", Name = "GetProduct")]
+        public Product Get(Guid id)
         {
             return _productService.GetProductById(id);
         }

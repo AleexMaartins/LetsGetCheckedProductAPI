@@ -17,7 +17,7 @@ namespace ProductAPI.Services
         {
             return _productRepository.GetAllProducts();
         }
-        public Product GetProductById(string id)
+        public Product GetProductById(Guid id)
         {
             return _productRepository.GetProductById(id);
         }
