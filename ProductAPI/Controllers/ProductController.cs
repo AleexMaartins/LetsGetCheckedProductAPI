@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace ProductAPI.Controllers
 {
     [ApiController]
-    [Route("products")]
+    [Route("[controller]")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
