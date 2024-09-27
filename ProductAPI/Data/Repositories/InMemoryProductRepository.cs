@@ -34,13 +34,39 @@ namespace ProductAPI.Data.Repositories
             }
         };
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> ReadAllProducts()
         {
             return Products;
         }
-        public Product GetProductById(Guid id)
+        public Product? ReadProductById(Guid id)
         {
             return Products.Find(p => p.Id == id);
+        }
+
+        public void DeleteProductById(Guid id)
+        {
+            var product = Products.Find(p => p.Id == id);
+            if (product != null)
+            {
+                Products.Remove(product);
+            }
+        }
+
+        public void AddProduct(Product product)
+        {
+            Products.Add(product);
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            var existingProduct = Products.Find(p => p.Id == product.Id);
+            if (existingProduct != null)
+            {
+                existingProduct.Name = product.Name;
+                existingProduct.Price = product.Price;
+                existingProduct.Description = product.Description;
+                existingProduct.Stock = product.Stock;
+            }
         }
     }
 }

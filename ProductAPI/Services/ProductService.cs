@@ -13,13 +13,25 @@ namespace ProductAPI.Services
             _productRepository = productRepository;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> ReadAllProducts()
         {
-            return _productRepository.GetAllProducts();
+            return _productRepository.ReadAllProducts();
         }
-        public Product GetProductById(Guid id)
+        public Product? ReadProductById(Guid id)
         {
-            return _productRepository.GetProductById(id);
+            return _productRepository.ReadProductById(id);
+        }
+        public void DeleteProductById(Guid id)
+        {
+            _productRepository.DeleteProductById(id);
+        }
+        public void AddProduct(Product product)
+        {
+            _productRepository.AddProduct(product);
+        }
+        public void UpdateProduct(Product product)
+        {
+            _productRepository.UpdateProduct(product);
         }
     }
 }

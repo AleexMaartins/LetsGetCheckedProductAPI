@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace ProductAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("products")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
@@ -19,17 +19,65 @@ namespace ProductAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet(Name = "GetProducts")]
-        public IEnumerable<Product> Get()
+        [HttpGet(Name = "readProducts")]
+        public ActionResult<IEnumerable<Product>> Read()
         {
-            return _productService.GetAllProducts();
+            var products = _productService.ReadAllProducts();
+            return Ok(products);
         }
 
-        [HttpGet("{id:guid}", Name = "GetProduct")]
-        public Product Get(Guid id)
+        [HttpGet("{id:guid}", Name = "readProduct")]
+        public ActionResult<Product> Read(Guid id)
         {
-            return _productService.GetProductById(id);
+            var product = _productService.ReadProductById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
 
+        [HttpDelete("{id:guid}", Name = "deleteProduct")]
+        public IActionResult Delete(Guid id)
+        {
+            var product = _productService.ReadProductById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _productService.DeleteProductById(id);
+            return NoContent();
+        }
+
+        [HttpPost(Name = "addProduct")]
+        public IActionResult Add([FromBody] Product product)
+        {
+            if (product == null)
+            {
+                return BadRequest("Product cannot be null.");
+            }
+
+            _productService.AddProduct(product);
+            return CreatedAtRoute("readProduct", new { id = product.Id }, product);
+        }
+
+        [HttpPut("{id:guid}", Name = "updateProduct")]
+        public IActionResult Update(Guid id, [FromBody] Product product)
+        {
+            if (product == null)
+            {
+                return BadRequest("Product cannot be null.");
+            }
+
+            var existingProduct = _productService.ReadProductById(id);
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+
+            _productService.UpdateProduct(product);
+            return NoContent();
+        }
     }
 }
