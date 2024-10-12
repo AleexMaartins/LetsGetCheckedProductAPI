@@ -1,7 +1,7 @@
 .vs
-ProductAPI/bin
-ProductAPI/obj
-ProductAPI/volume
-ProductAPI.csproj.user
-ProductAPI.csproj
-LetsGetCheckedProductAPI.sln
+src/ProductAPI/bin
+src/ProductAPI/obj
+src/ProductAPI/volume
+src/ProductAPI.csproj.user
+src/ProductAPI.csproj
+src/LetsGetCheckedProductAPI.sln

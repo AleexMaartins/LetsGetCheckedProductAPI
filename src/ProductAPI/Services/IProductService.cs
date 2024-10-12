@@ -7,7 +7,7 @@ namespace ProductAPI.Services
         Task<IEnumerable<Product>> ReadAllProductsAsync();
         Task<Product?> ReadProductByIdAsync(Guid id);
         Task DeleteProductByIdAsync(Guid id);
-        Task AddProductAsync(CreateProductRequest createProductRequest);
+        Task AddProductAsync(CreateUpdateProductRequest createProductRequest);
         Task UpdateProductAsync(Product product);
     }
 }

@@ -9,7 +9,7 @@ namespace ProductAPI.Models
         public string Description { get; set; }
         public int Stock { get; set; }
     }
-    public class CreateProductRequest
+    public class CreateUpdateProductRequest
     {
         public string Name { get; set; }
         public decimal Price { get; set; }

@@ -51,7 +51,7 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPost(Name = "addProduct")]
-        public async Task<IActionResult> Add([FromBody] CreateProductRequest product)
+        public async Task<IActionResult> Add([FromBody] CreateUpdateProductRequest product)
         {
             if (product == null)
             {
@@ -64,9 +64,9 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPut("{id:guid}", Name = "updateProduct")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] Product product)
+        public async Task<IActionResult> Update(Guid id, [FromBody] CreateUpdateProductRequest updateProductRequest)
         {
-            if (product == null)
+            if (updateProductRequest == null)
             {
                 return BadRequest("Product cannot be null.");
             }
@@ -76,7 +76,14 @@ namespace ProductAPI.Controllers
             {
                 return NotFound();
             }
-
+            var product = new Product
+            {
+                Id = id,
+                Name = updateProductRequest.Name,
+                Price = updateProductRequest.Price,
+                Description = updateProductRequest.Description,
+                Stock = updateProductRequest.Stock
+            };
             await _productService.UpdateProductAsync(product);
             return NoContent();
         }

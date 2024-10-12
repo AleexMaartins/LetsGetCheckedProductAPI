@@ -13,7 +13,7 @@ namespace ProductAPI.Data.Repositories
         {
             _dynamoDbClient = dynamoDbClient;
         }
-        public async Task AddProductAsync(CreateProductRequest createProductRequest)
+        public async Task AddProductAsync(CreateUpdateProductRequest createProductRequest)
         {
             var newProduct = new Product
             {
