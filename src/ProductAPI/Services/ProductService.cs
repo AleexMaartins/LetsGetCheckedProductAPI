@@ -1,8 +1,5 @@
 using ProductAPI.Data.Repositories;
-using ProductAPI.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ProductAPI.Models;
 
 namespace ProductAPI.Services
 {
@@ -14,27 +11,22 @@ namespace ProductAPI.Services
         {
             _productRepository = productRepository;
         }
-
         public async Task<IEnumerable<Product>> ReadAllProductsAsync()
         {
             return await _productRepository.ReadAllProductsAsync();
         }
-
         public async Task<Product?> ReadProductByIdAsync(Guid id)
         {
             return await _productRepository.ReadProductByIdAsync(id);
         }
-
         public async Task DeleteProductByIdAsync(Guid id)
         {
             await _productRepository.DeleteProductByIdAsync(id);
         }
-
-        public async Task AddProductAsync(Product product)
+        public async Task AddProductAsync(CreateUpdateProductRequest createProductRequest)
         {
-            await _productRepository.AddProductAsync(product);
+            await _productRepository.AddProductAsync(createProductRequest);
         }
-
         public async Task UpdateProductAsync(Product product)
         {
             await _productRepository.UpdateProductAsync(product);

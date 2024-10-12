@@ -1,7 +1,4 @@
-using ProductAPI.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ProductAPI.Models;
 
 namespace ProductAPI.Services
 {
@@ -10,7 +7,7 @@ namespace ProductAPI.Services
         Task<IEnumerable<Product>> ReadAllProductsAsync();
         Task<Product?> ReadProductByIdAsync(Guid id);
         Task DeleteProductByIdAsync(Guid id);
-        Task AddProductAsync(Product product);
+        Task AddProductAsync(CreateUpdateProductRequest createProductRequest);
         Task UpdateProductAsync(Product product);
     }
 }
