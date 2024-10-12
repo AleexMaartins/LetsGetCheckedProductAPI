@@ -11,7 +11,6 @@ namespace ProductAPI.Services
         {
             _productRepository = productRepository;
         }
-
         public async Task<IEnumerable<Product>> ReadAllProductsAsync()
         {
             return await _productRepository.ReadAllProductsAsync();

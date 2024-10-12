@@ -13,16 +13,15 @@ namespace ProductAPI.Data.Repositories
         {
             _dynamoDbClient = dynamoDbClient;
         }
-
-        // Method to add a product to DynamoDB
         public async Task AddProductAsync(Product product)
         {
+            product.Id = Guid.NewGuid();
             var request = new PutItemRequest
             {
                 TableName = TableName,
                 Item = new Dictionary<string, AttributeValue>
                 {
-                    {"Id", new AttributeValue { S = product.Id.ToString() }},
+                    {"ProductId", new AttributeValue { S = product.Id.ToString() }},
                     {"Name", new AttributeValue { S = product.Name }},
                     {"Price", new AttributeValue { N = product.Price.ToString() }},
                     {"Description", new AttributeValue { S = product.Description }},
@@ -31,8 +30,6 @@ namespace ProductAPI.Data.Repositories
             };
             await _dynamoDbClient.PutItemAsync(request);
         }
-
-        // Method to read all products from DynamoDB
         public async Task<IEnumerable<Product>> ReadAllProductsAsync()
         {
             var scanRequest = new ScanRequest
@@ -46,7 +43,7 @@ namespace ProductAPI.Data.Repositories
             {
                 products.Add(new Product
                 {
-                    Id = Guid.Parse(item["Id"].S),
+                    Id = Guid.Parse(item["ProductId"].S),
                     Name = item["Name"].S,
                     Price = decimal.Parse(item["Price"].N),
                     Description = item["Description"].S,
@@ -56,8 +53,6 @@ namespace ProductAPI.Data.Repositories
 
             return products;
         }
-
-        // Method to get a product by ID from DynamoDB
         public async Task<Product?> ReadProductByIdAsync(Guid id)
         {
             var request = new GetItemRequest
@@ -65,7 +60,7 @@ namespace ProductAPI.Data.Repositories
                 TableName = TableName,
                 Key = new Dictionary<string, AttributeValue>
                 {
-                    { "Id", new AttributeValue { S = id.ToString() } }
+                    { "ProductId", new AttributeValue { S = id.ToString() } }
                 }
             };
             var response = await _dynamoDbClient.GetItemAsync(request);
@@ -77,15 +72,13 @@ namespace ProductAPI.Data.Repositories
 
             return new Product
             {
-                Id = Guid.Parse(response.Item["Id"].S),
+                Id = Guid.Parse(response.Item["ProductId"].S),
                 Name = response.Item["Name"].S,
                 Price = decimal.Parse(response.Item["Price"].N),
                 Description = response.Item["Description"].S,
                 Stock = int.Parse(response.Item["Stock"].N)
             };
         }
-
-        // Method to delete a product by ID from DynamoDB
         public async Task DeleteProductByIdAsync(Guid id)
         {
             var request = new DeleteItemRequest
@@ -93,13 +86,11 @@ namespace ProductAPI.Data.Repositories
                 TableName = TableName,
                 Key = new Dictionary<string, AttributeValue>
                 {
-                    { "Id", new AttributeValue { S = id.ToString() } }
+                    { "ProductId", new AttributeValue { S = id.ToString() } }
                 }
             };
             await _dynamoDbClient.DeleteItemAsync(request);
         }
-
-        // Method to update an existing product in DynamoDB
         public async Task UpdateProductAsync(Product product)
         {
             var request = new UpdateItemRequest
@@ -107,7 +98,7 @@ namespace ProductAPI.Data.Repositories
                 TableName = TableName,
                 Key = new Dictionary<string, AttributeValue>
                 {
-                    { "Id", new AttributeValue { S = product.Id.ToString() } }
+                    { "ProductId", new AttributeValue { S = product.Id.ToString() } }
                 },
                 AttributeUpdates = new Dictionary<string, AttributeValueUpdate>
                 {
