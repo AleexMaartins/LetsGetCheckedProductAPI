@@ -13,23 +13,33 @@ namespace ProductAPI.Data.Repositories
         {
             _dynamoDbClient = dynamoDbClient;
         }
-        public async Task AddProductAsync(Product product)
+        public async Task AddProductAsync(CreateProductRequest createProductRequest)
         {
-            product.Id = Guid.NewGuid();
+            var newProduct = new Product
+            {
+                Id = Guid.NewGuid(), // Generating a new Guid for the product ID
+                Name = createProductRequest.Name,
+                Price = createProductRequest.Price,
+                Description = createProductRequest.Description,
+                Stock = createProductRequest.Stock
+            };
+
             var request = new PutItemRequest
             {
                 TableName = TableName,
                 Item = new Dictionary<string, AttributeValue>
                 {
-                    {"ProductId", new AttributeValue { S = product.Id.ToString() }},
-                    {"Name", new AttributeValue { S = product.Name }},
-                    {"Price", new AttributeValue { N = product.Price.ToString() }},
-                    {"Description", new AttributeValue { S = product.Description }},
-                    {"Stock", new AttributeValue { N = product.Stock.ToString() }},
+                    {"ProductId", new AttributeValue { S = newProduct.Id.ToString() }},
+                    {"Name", new AttributeValue { S = newProduct.Name }},
+                    {"Price", new AttributeValue { N = newProduct.Price.ToString() }},
+                    {"Description", new AttributeValue { S = newProduct.Description }},
+                    {"Stock", new AttributeValue { N = newProduct.Stock.ToString() }},
                 }
             };
+
             await _dynamoDbClient.PutItemAsync(request);
         }
+
         public async Task<IEnumerable<Product>> ReadAllProductsAsync()
         {
             var scanRequest = new ScanRequest

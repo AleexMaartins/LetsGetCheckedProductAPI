@@ -23,9 +23,9 @@ namespace ProductAPI.Services
         {
             await _productRepository.DeleteProductByIdAsync(id);
         }
-        public async Task AddProductAsync(Product product)
+        public async Task AddProductAsync(CreateProductRequest createProductRequest)
         {
-            await _productRepository.AddProductAsync(product);
+            await _productRepository.AddProductAsync(createProductRequest);
         }
         public async Task UpdateProductAsync(Product product)
         {

@@ -7,7 +7,7 @@ namespace ProductAPI.Data.Repositories
         Task<IEnumerable<Product>> ReadAllProductsAsync();
         Task<Product?> ReadProductByIdAsync(Guid id);
         Task DeleteProductByIdAsync(Guid id);
-        Task AddProductAsync(Product product);
+        Task AddProductAsync(CreateProductRequest createProductRequest);
         Task UpdateProductAsync(Product product);
     }
 }

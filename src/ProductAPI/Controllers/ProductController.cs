@@ -51,7 +51,7 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPost(Name = "addProduct")]
-        public async Task<IActionResult> Add([FromBody] Product product)
+        public async Task<IActionResult> Add([FromBody] CreateProductRequest product)
         {
             if (product == null)
             {
@@ -59,7 +59,8 @@ namespace ProductAPI.Controllers
             }
 
             await _productService.AddProductAsync(product);
-            return CreatedAtRoute("readProduct", new { id = product.Id }, product);
+
+            return CreatedAtRoute("readProduct", new { id = Guid.NewGuid() }, product);
         }
 
         [HttpPut("{id:guid}", Name = "updateProduct")]
