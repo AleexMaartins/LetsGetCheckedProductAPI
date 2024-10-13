@@ -19,6 +19,19 @@ namespace ProductAPI.Controllers
             _productService = productService;
         }
 
+        [HttpPost(Name = "addProduct")]
+        public async Task<ActionResult<Product>> Add([FromBody] CreateUpdateProductRequest product)
+        {
+            if (product == null)
+            {
+                return BadRequest("Product cannot be null.");
+            }
+
+            var newProduct = await _productService.AddProductAsync(product);
+            return Ok(newProduct);
+
+        }
+
         [HttpGet(Name = "readProducts")]
         public async Task<ActionResult<IEnumerable<Product>>> Read()
         {
@@ -37,34 +50,8 @@ namespace ProductAPI.Controllers
             return Ok(product);
         }
 
-        [HttpDelete("{id:guid}", Name = "deleteProduct")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            var product = await _productService.ReadProductByIdAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            await _productService.DeleteProductByIdAsync(id);
-            return NoContent();
-        }
-
-        [HttpPost(Name = "addProduct")]
-        public async Task<IActionResult> Add([FromBody] CreateUpdateProductRequest product)
-        {
-            if (product == null)
-            {
-                return BadRequest("Product cannot be null.");
-            }
-
-            await _productService.AddProductAsync(product);
-
-            return CreatedAtRoute("readProduct", new { id = Guid.NewGuid() }, product);
-        }
-
         [HttpPut("{id:guid}", Name = "updateProduct")]
-        public async Task<IActionResult> Update(Guid id, [FromBody] CreateUpdateProductRequest updateProductRequest)
+        public async Task<ActionResult<Product>> Update(Guid id, [FromBody] CreateUpdateProductRequest updateProductRequest)
         {
             if (updateProductRequest == null)
             {
@@ -85,6 +72,18 @@ namespace ProductAPI.Controllers
                 Stock = updateProductRequest.Stock
             };
             await _productService.UpdateProductAsync(product);
+            return product;
+        }
+
+        [HttpDelete("{id:guid}", Name = "deleteProduct")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var product = await _productService.ReadProductByIdAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            await _productService.DeleteProductByIdAsync(id);
             return NoContent();
         }
     }

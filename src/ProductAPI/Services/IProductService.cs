@@ -4,10 +4,10 @@ namespace ProductAPI.Services
 {
     public interface IProductService
     {
+        Task<Product> AddProductAsync(CreateUpdateProductRequest createProductRequest);
         Task<IEnumerable<Product>> ReadAllProductsAsync();
         Task<Product?> ReadProductByIdAsync(Guid id);
-        Task DeleteProductByIdAsync(Guid id);
-        Task AddProductAsync(CreateUpdateProductRequest createProductRequest);
         Task UpdateProductAsync(Product product);
+        Task DeleteProductByIdAsync(Guid id);
     }
 }

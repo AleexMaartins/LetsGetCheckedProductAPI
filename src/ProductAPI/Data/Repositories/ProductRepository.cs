@@ -13,7 +13,7 @@ namespace ProductAPI.Data.Repositories
         {
             _dynamoDbClient = dynamoDbClient;
         }
-        public async Task AddProductAsync(CreateUpdateProductRequest createProductRequest)
+        public async Task<Product> AddProductAsync(CreateUpdateProductRequest createProductRequest)
         {
             var newProduct = new Product
             {
@@ -38,6 +38,7 @@ namespace ProductAPI.Data.Repositories
             };
 
             await _dynamoDbClient.PutItemAsync(request);
+            return newProduct;
         }
 
         public async Task<IEnumerable<Product>> ReadAllProductsAsync()
@@ -89,18 +90,7 @@ namespace ProductAPI.Data.Repositories
                 Stock = int.Parse(response.Item["Stock"].N)
             };
         }
-        public async Task DeleteProductByIdAsync(Guid id)
-        {
-            var request = new DeleteItemRequest
-            {
-                TableName = TableName,
-                Key = new Dictionary<string, AttributeValue>
-                {
-                    { "ProductId", new AttributeValue { S = id.ToString() } }
-                }
-            };
-            await _dynamoDbClient.DeleteItemAsync(request);
-        }
+
         public async Task UpdateProductAsync(Product product)
         {
             var request = new UpdateItemRequest
@@ -119,6 +109,18 @@ namespace ProductAPI.Data.Repositories
                 }
             };
             await _dynamoDbClient.UpdateItemAsync(request);
+        }
+        public async Task DeleteProductByIdAsync(Guid id)
+        {
+            var request = new DeleteItemRequest
+            {
+                TableName = TableName,
+                Key = new Dictionary<string, AttributeValue>
+                {
+                    { "ProductId", new AttributeValue { S = id.ToString() } }
+                }
+            };
+            await _dynamoDbClient.DeleteItemAsync(request);
         }
     }
 }
