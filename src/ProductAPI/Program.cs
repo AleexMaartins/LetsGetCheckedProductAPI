@@ -20,7 +20,8 @@ builder.Services.AddSingleton<IAmazonDynamoDB>(sp =>
     new AmazonDynamoDBClient(new BasicAWSCredentials("test", "test"),
         new AmazonDynamoDBConfig
         {
-            ServiceURL = "http://localhost:4566",  // LocalStack endpoint
+            ServiceURL = "http://10.0.2.20:4566",
+
             AuthenticationRegion = "us-east-1"
         }));
 
