@@ -4,16 +4,16 @@ namespace ProductAPI.Models
     public class Product
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        required public string Name { get; set; }
         public decimal Price { get; set; }
-        public string Description { get; set; }
+        required public string Description { get; set; }
         public int Stock { get; set; }
     }
     public class CreateUpdateProductRequest
     {
-        public string Name { get; set; }
+        required public string Name { get; set; }
         public decimal Price { get; set; }
-        public string Description { get; set; }
+        required public string Description { get; set; }
         public int Stock { get; set; }
     }
 }

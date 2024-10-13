@@ -1,6 +1,8 @@
 version: "3.8"
 
 services:
+  
+  # Database
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
     image: localstack/localstack
@@ -11,6 +13,8 @@ services:
       - "127.0.0.1:4510-4559:4510-4559"
     environment:
       - DEBUG=${DEBUG:-0}
+      - PERSISTENCE=1
+
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
@@ -18,7 +22,18 @@ services:
       ls:
         # Set the container IP address in the 10.0.2.0/24 subnet
         ipv4_address: 10.0.2.20
-
+  # API
+  productapi:
+    image: ${DOCKER_REGISTRY-}productapi
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+     - "5045:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+  
   application:
     image: ghcr.io/localstack/localstack-docker-debug:main
     entrypoint: ""
@@ -35,3 +50,5 @@ networks:
       config:
         # Specify the subnet range for IP address allocation
         - subnet: 10.0.2.0/24
+  
+    
