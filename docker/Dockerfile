@@ -11,6 +11,8 @@ RUN dotnet build src/ProductAPI/ProductAPI.csproj -c Release -o /app/build
 
 RUN dotnet publish src/ProductAPI/ProductAPI.csproj -c Release -o /app/publish
 
+RUN dotnet restore src/ProductAPI/Tests/ProductAPI.Tests/ProductAPI.Tests.csproj
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 WORKDIR /app

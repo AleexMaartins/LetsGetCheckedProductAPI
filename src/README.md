@@ -30,7 +30,6 @@ ProductAPI is a simple RESTful API designed to manage products in an inventory s
 
 Before you begin, ensure you have met the following requirements:
 
-- [.NET SDK](https://dotnet.microsoft.com/download) (version 8 or later)
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/)
 
@@ -41,5 +40,7 @@ Before you begin, ensure you have met the following requirements:
 To clone the repository and navigate into the project directory, run:
 
 ```bash
-git clone https://github.com/yourusername/LetsGetCheckedProductAPI.git
-cd LetsGetCheckedProductAPI/src/ProductAPI
+git clone https://github.com/AleexMaartins/LetsGetCheckedProductAPI
+cd .\LetsGetCheckedProductAPI\docker\
+docker-compose up --build
+```
