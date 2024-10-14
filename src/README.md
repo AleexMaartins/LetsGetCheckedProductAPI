@@ -42,5 +42,5 @@ To clone the repository and navigate into the project directory, run:
 ```bash
 git clone https://github.com/AleexMaartins/LetsGetCheckedProductAPI
 cd .\LetsGetCheckedProductAPI\docker\
-docker-compose up --build
+docker compose up --build
 ```
