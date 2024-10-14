@@ -22,37 +22,6 @@ namespace ProductAPI.Tests
         }
 
         [TestMethod]
-        public async Task GetProductById_ValidId_ReturnsOkResult()
-        {
-
-            var productId = Guid.NewGuid();
-            var product = new Product { Id = productId, Name = "Test Product", Price = 100.0M, Description = "Test Description" };
-
-            _mockProductService.Setup(service => service.ReadProductByIdAsync(productId))
-                               .ReturnsAsync(product);
-
-            var result = await _controller.Read(productId);
-
-            Assert.IsInstanceOfType(result.Result, typeof(OkObjectResult));
-
-            var okResult = result.Result as OkObjectResult;
-            Assert.IsNotNull(okResult);
-            Assert.AreEqual(product, okResult.Value);
-        }
-
-        [TestMethod]
-        public async Task GetProductById_InvalidId_ReturnsNotFoundResult()
-        {
-            var productId = Guid.NewGuid(); // A non-existent ID
-            _mockProductService.Setup(service => service.ReadProductByIdAsync(productId))
-                               .ReturnsAsync((Product)null); // Simulate no product found
-
-            var result = await _controller.Read(productId);
-
-            Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult));
-        }
-
-        [TestMethod]
         public async Task Create_ValidProduct_ReturnsOkResult()
         {
             var newProductRequest = new CreateUpdateProductRequest
@@ -81,6 +50,7 @@ namespace ProductAPI.Tests
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
             Assert.AreEqual(createdProduct, okResult.Value);
+
         }
 
         [TestMethod]
@@ -90,6 +60,38 @@ namespace ProductAPI.Tests
 
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestObjectResult));
         }
+        [TestMethod]
+        public async Task ReadProductById_ValidId_ReturnsOkResult()
+        {
+
+            var productId = Guid.NewGuid();
+            var product = new Product { Id = productId, Name = "Test Product", Price = 100.0M, Description = "Test Description" };
+
+            _mockProductService.Setup(service => service.ReadProductByIdAsync(productId))
+                               .ReturnsAsync(product);
+
+            var result = await _controller.Read(productId);
+
+            Assert.IsInstanceOfType(result.Result, typeof(OkObjectResult));
+
+            var okResult = result.Result as OkObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(product, okResult.Value);
+        }
+
+        [TestMethod]
+        public async Task ReadProductById_InvalidId_ReturnsNotFoundResult()
+        {
+            var productId = Guid.NewGuid(); // non-existent ID
+            _mockProductService.Setup(service => service.ReadProductByIdAsync(productId))
+                               .ReturnsAsync((Product)null); // simulate no product found
+
+            var result = await _controller.Read(productId);
+
+            Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult));
+        }
+
+
 
         [TestMethod]
         public async Task Update_ValidId_ReturnsOkResult()
@@ -117,8 +119,9 @@ namespace ProductAPI.Tests
                 Stock = updateProductRequest.Stock
             };
 
-            _mockProductService.Setup(service => service.UpdateProductAsync(It.IsAny<Product>()))
-                               .Returns(Task.CompletedTask);
+            _mockProductService.Setup(service => service.ReadProductByIdAsync(It.IsAny<Guid>()))
+                    .ReturnsAsync(existingProduct);
+
 
             var result = await _controller.Update(productId, updateProductRequest);
 
@@ -133,7 +136,6 @@ namespace ProductAPI.Tests
             Assert.AreEqual(updatedProduct.Description, returnedProduct.Description);
         }
 
-        // Test case for updating a product with null request
         [TestMethod]
         public async Task Update_NullProduct_ReturnsBadRequest()
         {
@@ -144,7 +146,6 @@ namespace ProductAPI.Tests
             Assert.IsInstanceOfType(result.Result, typeof(BadRequestObjectResult));
         }
 
-        // Test case for deleting a product
         [TestMethod]
         public async Task Delete_ValidId_ReturnsNoContent()
         {
@@ -158,13 +159,12 @@ namespace ProductAPI.Tests
             Assert.IsInstanceOfType(result, typeof(NoContentResult));
         }
 
-        // Test case for deleting a product with invalid ID
         [TestMethod]
         public async Task Delete_InvalidId_ReturnsNotFound()
         {
-            var productId = Guid.NewGuid(); // A non-existent ID
+            var productId = Guid.NewGuid(); // non-existent ID
             _mockProductService.Setup(service => service.ReadProductByIdAsync(productId))
-                               .ReturnsAsync((Product)null); // Simulate no product found
+                               .ReturnsAsync((Product)null); // simulate no product found
 
             var result = await _controller.Delete(productId);
 
