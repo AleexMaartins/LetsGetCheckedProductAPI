@@ -44,3 +44,5 @@ git clone https://github.com/AleexMaartins/LetsGetCheckedProductAPI
 cd .\LetsGetCheckedProductAPI\docker\
 docker compose up --build
 ```
+### Accessing the API
+http://localhost:5045/swagger/index.html
