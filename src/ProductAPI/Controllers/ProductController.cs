@@ -19,15 +19,15 @@ namespace ProductAPI.Controllers
             _productService = productService;
         }
 
-        [HttpPost(Name = "addProduct")]
-        public async Task<ActionResult<Product>> Add([FromBody] CreateUpdateProductRequest product)
+        [HttpPost(Name = "createProduct")]
+        public async Task<ActionResult<Product>> Create([FromBody] CreateUpdateProductRequest product)
         {
             if (product == null)
             {
                 return BadRequest("Product cannot be null.");
             }
 
-            var newProduct = await _productService.AddProductAsync(product);
+            var newProduct = await _productService.CreateProductAsync(product);
             return Ok(newProduct);
 
         }
@@ -72,7 +72,7 @@ namespace ProductAPI.Controllers
                 Stock = updateProductRequest.Stock
             };
             await _productService.UpdateProductAsync(product);
-            return product;
+            return Ok(product);
         }
 
         [HttpDelete("{id:guid}", Name = "deleteProduct")]

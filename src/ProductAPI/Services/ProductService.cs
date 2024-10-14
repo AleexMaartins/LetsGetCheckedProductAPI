@@ -11,9 +11,9 @@ namespace ProductAPI.Services
         {
             _productRepository = productRepository;
         }
-        public async Task<Product> AddProductAsync(CreateUpdateProductRequest createProductRequest)
+        public async Task<Product> CreateProductAsync(CreateUpdateProductRequest createProductRequest)
         {
-            return await _productRepository.AddProductAsync(createProductRequest);
+            return await _productRepository.CreateProductAsync(createProductRequest);
         }
         public async Task<IEnumerable<Product>> ReadAllProductsAsync()
         {

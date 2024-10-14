@@ -7,17 +7,17 @@ namespace ProductAPI.Data.Repositories
     public class ProductRepository : IProductRepository
     {
         private readonly IAmazonDynamoDB _dynamoDbClient;
-        private const string TableName = "Products"; // DynamoDB table name
+        private const string TableName = "Products";
 
         public ProductRepository(IAmazonDynamoDB dynamoDbClient)
         {
             _dynamoDbClient = dynamoDbClient;
         }
-        public async Task<Product> AddProductAsync(CreateUpdateProductRequest createProductRequest)
+        public async Task<Product> CreateProductAsync(CreateUpdateProductRequest createProductRequest)
         {
             var newProduct = new Product
             {
-                Id = Guid.NewGuid(), // Generating a new Guid for the product ID
+                Id = Guid.NewGuid(),
                 Name = createProductRequest.Name,
                 Price = createProductRequest.Price,
                 Description = createProductRequest.Description,
