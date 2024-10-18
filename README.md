@@ -10,7 +10,6 @@ ProductAPI is a simple RESTful API designed to manage products in an inventory s
 - Retrieve product details by ID
 - Update existing products
 - Delete products from the inventory
-- Comprehensive error handling and validation
 - Unit tests to ensure code quality
 - Swagger documentation for API endpoints
 
