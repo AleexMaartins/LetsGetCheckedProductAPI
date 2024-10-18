@@ -16,15 +16,11 @@ ProductAPI is a simple RESTful API designed to manage products in an inventory s
 
 ## Technologies Used
 
-- **.NET Core (version 8)**
-- **ASP.NET Core**
-- **Entity Framework Core**
-- **DynamoDB** (using LocalStack)
-- **Docker**
-- **Moq** (for unit testing)
-- **MSTest** (for unit testing)
-- **FluentValidation** (for model validation)
-- **Swagger/OpenAPI** (for API documentation)
+- Developed API with .NET Core.
+- Used DynamoDB (Localstack) for the Database.
+- Deployed the API and Database using Docker and Docker Compose.
+- Moq and MSTest(Unit Testing) and Swagger/OpenAPI (API
+documentation).
 
 ## Prerequisites
 
